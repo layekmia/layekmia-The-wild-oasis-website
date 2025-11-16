@@ -5,8 +5,8 @@ import {
 } from "@/lib/apiService";
 import DateSelector from "./DateSelector";
 import ReservationForm from "./ReservationForm";
-import { getSession } from "next-auth/react";
 import LoginMessage from "./LoginMessage";
+import { getSession } from "@/helpers/getSession";
 
 export default async function Reservation({ cabinId }: { cabinId: string }) {
   const session = await getSession();
