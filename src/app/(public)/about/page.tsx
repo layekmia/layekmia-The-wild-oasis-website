@@ -1,6 +1,6 @@
 import Image from "next/image";
-import about1 from "../../../public/about-1.jpg";
-import about2 from "../../../public/about-2.jpg";
+import about1 from "../../../../public/about-1.jpg";
+import about2 from "../../../../public/about-2.jpg";
 import Link from "next/link";
 import { getCabins } from "@/lib/apiService";
 
@@ -10,7 +10,6 @@ export const metadata = {
   title: "About",
   description: "About page description",
 };
-
 
 export default async function Page() {
   const { data: cabins } = await getCabins();
