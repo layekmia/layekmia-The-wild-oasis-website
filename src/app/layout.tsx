@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <AuthProviders>
           <Header />
-          <div className="py-12 px-8 flex-1 grid">
+          <div className="py-8 px-4 sm:py-12 sm:px-8 flex-1 grid">
             <ReservationProvider>
               <main className="max-w-7xl mx-auto w-full">{children}</main>
             </ReservationProvider>

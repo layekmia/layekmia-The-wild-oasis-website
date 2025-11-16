@@ -22,7 +22,7 @@ export default function Filter() {
 
   return (
     <div className="flex justify-end mb-8">
-      <div className="border border-primary-800 flex items-center">
+      <div className="border border-primary-800 flex-col md:flex-row items-center">
         {filters.map(({ label, value }) => (
           <button
             key={value}

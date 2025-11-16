@@ -8,7 +8,7 @@ interface CabinCardProps {
 
 export default function CabinCard({ cabin }: CabinCardProps) {
   return (
-    <div className="w-full flex border border-primary-700">
+    <div className="w-full flex-col md:flex-row border border-primary-700">
       <div className="flex-1 relative min-h-[200px]">
         <Image
           className="object-cover"

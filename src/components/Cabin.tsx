@@ -8,8 +8,8 @@ interface cabinProps {
 
 export default function Cabin({ cabin }: cabinProps) {
   return (
-    <div className="mb-24 grid grid-cols-[3fr_4fr] gap-20 border border-primary-700 py-3 px-10">
-      <div className="relative scale-[1.15] -translate-x-3">
+    <div className="mb-24 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-15 md:gap-20 border border-primary-700 py-3 px-5 lg:px-10">
+      <div className="relative scale-[1.15] md:scale-[1.05] lg:scale-[1.15]  max-md:h-[300px] md:-translate-x-3">
         <Image
           src={cabin.image}
           alt={cabin.name}
@@ -18,7 +18,7 @@ export default function Cabin({ cabin }: cabinProps) {
         />
       </div>
       <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+        <h3 className="text-accent-100  font-black text-4xl md:text-7xl mb-5 md:translate-x-[-254px] bg-primary-950 lg:p-6 pb-1 lg:w-[150%]">
           Cabin {cabin.name}
         </h3>
         <p className="text-lg text-primary-300 mb-10">
