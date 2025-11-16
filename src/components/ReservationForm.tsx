@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { createReservation } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
+import ReservationSummary from "./ReservationSummary";
 
 interface Cabin {
   cabin: ICabin;
@@ -38,7 +39,7 @@ export default function ReservationForm({ cabin }: Cabin) {
 
   return (
     <div className="h-full bg-primary-900">
-      <div className="flex items-center gap-5 px-16 py-2 bg-primary-800">
+      <div className="flex items-center gap-5 px-8 md:px-16 py-2 bg-primary-800">
         <p>Logged in as</p>
         {session?.user && (
           <>
@@ -62,10 +63,10 @@ export default function ReservationForm({ cabin }: Cabin) {
           resetRange();
           await createBookingWithData(formData);
         }}
-        className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg"
+        className="flex flex-col gap-5 bg-primary-900 py-5 px-5 md:px-16 md:py-10 text-lg"
       >
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many Guests</label>
+          <label htmlFor="numGuests" className="text-base">How many Guests</label>
           <select
             name="numGuests"
             required
@@ -84,7 +85,7 @@ export default function ReservationForm({ cabin }: Cabin) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="observations" className="text-base">
             Anything we should know about your stay?
           </label>
           <textarea
@@ -94,13 +95,16 @@ export default function ReservationForm({ cabin }: Cabin) {
             placeholder=" Any pets, allergies, special requirements, etc,"
           ></textarea>
         </div>
-        <div className="flex items-center gap-5 justify-end">
+        <div className="flex items-center gap-3 md:gap-5 justify-end">
           <p className="text-primary-300 text-base">Start by selecting dates</p>
           {range?.from && range?.to && (
             <SubmitButton pendingLabel="Reserving...">Reserve now</SubmitButton>
           )}
         </div>
       </form>
+      <div className="md:hidden">
+        <ReservationSummary cabin={cabin}/>
+      </div>
     </div>
   );
 }
