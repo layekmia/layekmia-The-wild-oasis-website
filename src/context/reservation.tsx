@@ -18,7 +18,10 @@ export function ReservationProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [range, setRange] = useState<DateRange | undefined>(undefined);
+  const [range, setRange] = useState<DateRange | undefined>({
+    from: undefined,
+    to: undefined,
+  });
   const resetRange = () => setRange({ from: undefined, to: undefined });
 
   return (

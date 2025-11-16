@@ -2,7 +2,8 @@
 
 import { getSession } from "@/helpers/getSession";
 import {
-  deleteBooking,
+  createBooking,
+  deleteBookingById,
   getBookings,
   getGuestByEmail,
   updateBooking,
@@ -10,6 +11,39 @@ import {
 } from "./apiService";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+interface BookingPayload {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  numNights: number;
+  cabinPrice: number;
+  cabinId: string | undefined;
+}
+
+export async function createReservation(
+  bookingData: BookingPayload,
+  formData: FormData
+) {
+  const session = await getSession();
+  if (!session) throw new Error("You must be logged in");
+
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.id,
+    numGuests: formData.get("numGuests"),
+    observations: formData.get("observations")?.slice(0, 1000),
+    extraPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+
+  const { error } = await createBooking(newBooking);
+  if (error) throw new Error("Booking could not be created");
+  revalidatePath(`/cabins/${bookingData.cabinId}`);
+  redirect("/cabins/thankyou");
+}
 
 export async function updateReservation(formData: FormData, bookingId: string) {
   // verify authentication
@@ -37,13 +71,14 @@ export async function updateReservation(formData: FormData, bookingId: string) {
 
   const updateData = { numGuests, observations };
 
-  await updateBooking(bookingId, updateData);
+  const { error } = await updateBooking(bookingId, updateData);
+  if (error) throw new Error("Booking could not be updated");
 
   revalidatePath("/account/reservations");
   redirect("/account/reservations");
 }
 
-export async function deleteReservation(bookingId: string) {
+export async function deleteBooking(bookingId: string) {
   // 1. Ensure the user is authenticated
   const session = await getSession();
   if (!session) {
@@ -69,7 +104,7 @@ export async function deleteReservation(bookingId: string) {
   }
 
   // Perform delete operation
-  await deleteBooking(bookingId);
+  await deleteBookingById(bookingId);
 
   //Revalidate UI
   revalidatePath("/account/reservations");

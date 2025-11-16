@@ -2,7 +2,12 @@
 
 import { useReservation } from "@/context/reservation";
 import { ICabin } from "@/types/models";
-import { differenceInDays, isWithinInterval } from "date-fns";
+import {
+  differenceInDays,
+  isPast,
+  isSameDay,
+  isWithinInterval,
+} from "date-fns";
 import { DayPicker, DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
@@ -34,10 +39,9 @@ interface DateSelectorProps {
 
 function DateSelector({ cabin, setting, bookedDates }: DateSelectorProps) {
   const { range, setRange, resetRange } = useReservation();
-
-  const { regularPrice, discount } = cabin;
   const bookedDatesAsDates = bookedDates?.map((date) => new Date(date)) ?? [];
 
+  const { regularPrice, discount } = cabin;
   const numNights =
     range?.from && range?.to ? differenceInDays(range.to, range.from) : 0;
   const cabinPrice = numNights * (regularPrice - discount);
@@ -45,15 +49,16 @@ function DateSelector({ cabin, setting, bookedDates }: DateSelectorProps) {
   // SETTINGS
   const { minBookingLength, maxBookingLength } = setting;
 
- 
-
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         className="pt-12 place-self-center"
         mode="range"
         required={false}
-        disabled={bookedDatesAsDates}
+        disabled={(curDate) =>
+          isPast(curDate) ||
+          isAlreadyBooked({ from: curDate, to: curDate }, bookedDatesAsDates)
+        }
         min={minBookingLength + 1}
         max={maxBookingLength}
         fromMonth={new Date()}

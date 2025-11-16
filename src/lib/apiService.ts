@@ -184,7 +184,7 @@ export async function updateBooking(
 }
 
 // Delete booking
-export async function deleteBooking(id: string): Promise<ApiResponse<any>> {
+export async function deleteBookingById(id: string): Promise<ApiResponse<any>> {
   if (!id) return { data: null, error: "Booking ID is required" };
   try {
     const res = await axios.delete(`${BASE_URL}/api/bookings/${id}/delete`);
