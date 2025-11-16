@@ -2,26 +2,20 @@
 
 import { useReservation } from "@/context/reservation";
 import { ICabin } from "@/types/models";
-import {
-  differenceInDays,
-  isPast,
-  isSameDay,
-  isWithinInterval,
-} from "date-fns";
+import { differenceInDays, isPast, startOfDay } from "date-fns";
 import { DayPicker, DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 function isAlreadyBooked(range: DateRange, datesArr: Date[]): boolean {
-  return (
-    !!range.from &&
-    !!range.to &&
-    datesArr.some((date) =>
-      isWithinInterval(date, {
-        start: range.from as Date,
-        end: range.to as Date,
-      })
-    )
-  );
+  if (!range.from || !range.to) return false;
+
+  const start = startOfDay(range.from);
+  const end = startOfDay(range.to);
+
+  return datesArr.some((date) => {
+    const d = startOfDay(date);
+    return d >= start && d <= end;
+  });
 }
 
 interface DateSelectorProps {
