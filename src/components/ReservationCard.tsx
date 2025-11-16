@@ -8,8 +8,12 @@ import DeleteReservation from "./DeleteReservation";
 
 interface ReservationCardProps {
   booking: IBookingPopulated;
+  onDelete: (bookingId: string) => Promise<void>;
 }
-export default function ReservationCard({ booking }: ReservationCardProps) {
+export default function ReservationCard({
+  booking,
+  onDelete,
+}: ReservationCardProps) {
   const {
     _id: id,
     numGuests,
@@ -71,7 +75,10 @@ export default function ReservationCard({ booking }: ReservationCardProps) {
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteReservation bookingId={id?.toString() ?? ""} />
+            <DeleteReservation
+              onDelete={onDelete}
+              bookingId={id?.toString() ?? ""}
+            />
           </>
         ) : null}
       </div>

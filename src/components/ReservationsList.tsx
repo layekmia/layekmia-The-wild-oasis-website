@@ -1,15 +1,33 @@
-import ReservationCard from "@/components/ReservationCard";
-import { getSession } from "@/helpers/getSession";
-import { getBookings } from "@/lib/apiService";
-import Link from "next/link";
+"use client";
 
-export default async function ReservationsList() {
-  const session = await getSession();
-  const { data } = await getBookings(session?.user?.id as string);
+import ReservationCard from "@/components/ReservationCard";
+import { deleteReservation } from "@/lib/actions";
+import { IBookingPopulated } from "@/types/type";
+import Link from "next/link";
+import { useOptimistic } from "react";
+
+interface ReservationPageProps {
+  bookings: IBookingPopulated[];
+}
+
+export default function ReservationsList({ bookings }: ReservationPageProps) {
+  const [optimisticBookings, optimisticDelete] = useOptimistic(
+    bookings,
+    (curBookings: IBookingPopulated[], bookingId: string) => {
+      return curBookings.filter(
+        (booking) => booking._id?.toString() !== bookingId
+      );
+    }
+  );
+
+  async function handleDelete(bookingId: string) {
+    optimisticDelete(bookingId);
+    await deleteReservation(bookingId);
+  }
 
   return (
     <>
-      {!data?.length ? (
+      {!optimisticBookings?.length ? (
         <p className="text-lg">
           You have on reservations yet. Check out our{" "}
           <Link href="/cabins" className="text-accent-500 underline">
@@ -18,8 +36,8 @@ export default async function ReservationsList() {
         </p>
       ) : (
         <ul className="space-y-6">
-          {data?.map((booking) => (
-            <ReservationCard key={booking._id?.toString()} booking={booking} />
+          {optimisticBookings?.map((booking) => (
+            <ReservationCard key={booking._id?.toString()} booking={booking} onDelete={handleDelete} />
           ))}
         </ul>
       )}

@@ -1,5 +1,7 @@
 import ReservationsList from "@/components/ReservationsList";
 import Spinner from "@/components/Spinner";
+import { getSession } from "@/helpers/getSession";
+import { getBookings } from "@/lib/apiService";
 import { Suspense } from "react";
 
 export const metadata = {
@@ -7,13 +9,16 @@ export const metadata = {
 };
 
 export default async function Page() {
+  const session = await getSession();
+  const { data } = await getBookings(session?.user?.id as string);
+
   return (
     <div className="p-1">
       <h2 className="text-accent-400 font-semibold text-2xl mb-7">
         Your reservations
       </h2>
       <Suspense fallback={<Spinner />}>
-        <ReservationsList />
+        <ReservationsList bookings={data ?? []} />
       </Suspense>
     </div>
   );
