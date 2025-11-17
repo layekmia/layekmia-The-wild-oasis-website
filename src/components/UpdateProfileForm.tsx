@@ -22,35 +22,37 @@ export default function UpdateProfileForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-primary-900 py-4 px-8 md:py-8 md:px-12 text-lg flex gap-6 flex-col"
+      className="bg-gradient-to-br from-[#0f1115] via-[#13141c] to-[#1c1f2c] py-4 px-8 md:py-8 md:px-12 text-lg flex gap-6 flex-col rounded-2xl shadow-lg border border-primary-800"
     >
       <div className="space-y-2">
-        <label>Full name</label>
+        <label className="text-gray-300 font-medium">Full name</label>
         <input
           disabled
           name="fullName"
-          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          className="px-5 py-3 bg-primary-950 text-primary-100 w-full rounded-sm disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-400 transition"
           defaultValue={fullName}
         />
       </div>
 
       <div className="space-y-2">
-        <label>Email address</label>
+        <label className="text-gray-300 font-medium">Email address</label>
         <input
           disabled
           name="email"
-          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          className="px-5 py-3 bg-primary-950 text-primary-100 w-full rounded-sm disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-400 transition"
           defaultValue={email}
         />
       </div>
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label htmlFor="nationality">Where are you from?</label>
+          <label htmlFor="nationality" className="text-gray-300 font-medium">
+            Where are you from?
+          </label>
           <img
             src={countryFlag}
             alt="Country flag"
-            className="h-5 rounded-sm"
+            className="h-5 rounded-sm border border-gray-600"
           />
         </div>
 
@@ -58,12 +60,14 @@ export default function UpdateProfileForm({
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="nationalID">National ID number</label>
+        <label htmlFor="nationalID" className="text-gray-300 font-medium">
+          National ID number
+        </label>
         <input
           defaultValue={nationalID}
           required
           name="nationalID"
-          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+          className="px-5 py-3 bg-primary-950 text-primary-100 w-full rounded-sm focus:outline-none focus:ring-2 focus:ring-accent-400 transition"
         />
       </div>
 

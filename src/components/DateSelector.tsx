@@ -2,7 +2,7 @@
 
 import { useReservation } from "@/context/reservation";
 import { ICabin } from "@/types/models";
-import { differenceInDays, isPast, startOfDay } from "date-fns";
+import { isPast, startOfDay } from "date-fns";
 import { DayPicker, DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import ReservationSummary from "./ReservationSummary";
@@ -36,13 +36,12 @@ function DateSelector({ cabin, setting, bookedDates }: DateSelectorProps) {
   const { range, setRange } = useReservation();
   const bookedDatesAsDates = bookedDates?.map((date) => new Date(date)) ?? [];
 
-  // SETTINGS
   const { minBookingLength, maxBookingLength } = setting;
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between bg-gradient-to-br from-primary-900 via-primary-950 to-black border border-primary-700 shadow-xl  pt-5">
       <DayPicker
-        className="pt-12 place-self-center"
+        className="pt-12 place-self-center bg-primary-950 rounded-lg shadow-inner text-primary-100 border border-primary-700"
         mode="range"
         required={false}
         disabled={(curDate) =>
@@ -58,9 +57,18 @@ function DateSelector({ cabin, setting, bookedDates }: DateSelectorProps) {
         numberOfMonths={1}
         selected={range}
         onSelect={setRange}
+        modifiersClassNames={{
+          selected: "bg-accent-500 text-primary-950 font-semibold",
+          today: "border-accent-400 text-accent-400",
+          disabled: "text-primary-600 opacity-50 cursor-not-allowed",
+          range_start: "bg-accent-400 text-primary-950 rounded-l-md",
+          range_end: "bg-accent-400 text-primary-950 rounded-r-md",
+          range_middle: "bg-accent-300 text-primary-950",
+          hidden: "invisible",
+        }}
       />
 
-      <div className="max-md:hidden">
+      <div className="max-md:hidden mt-6">
         <ReservationSummary cabin={cabin} />
       </div>
     </div>

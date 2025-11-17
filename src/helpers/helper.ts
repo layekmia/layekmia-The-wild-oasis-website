@@ -13,6 +13,17 @@ export function formatBookingDates(startDate: Date, endDate: Date) {
   return `${startFormatted} (in ${days} days) — ${endFormatted}`;
 }
 
+export function formatDate(dateString: Date ): string {
+  const date = new Date(dateString);
+
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+
 export function formatBookingTime(dateNumber: Date) {
   const date = new Date(dateNumber);
   return `Booked ${format(date, "EEE, MMM dd yyyy, hh:mm a")}`;

@@ -8,25 +8,26 @@ interface cabinProps {
 
 export default function Cabin({ cabin }: cabinProps) {
   return (
-    <div className="mb-24 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-15 md:gap-20 border border-primary-700 py-3 px-5 lg:px-10">
-      <div className="relative scale-[1.15] md:scale-[1.05] lg:scale-[1.15]  max-md:h-[300px] md:-translate-x-3">
+    <div className="mb-24 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-15 md:gap-20 border border-primary-700 py-3 px-5 lg:px-10 bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 rounded-xl shadow-lg">
+      <div className="relative scale-[1.15] md:scale-[1.05] lg:scale-[1.15] max-md:h-[300px] md:-translate-x-3 border border-primary-800 rounded-md overflow-hidden shadow-inner">
         <Image
           src={cabin.image}
           alt={cabin.name}
           layout="fill"
           objectFit="cover"
+          className="transition-transform duration-500 hover:scale-105"
         />
       </div>
       <div>
-        <h3 className="text-accent-100  font-black text-4xl md:text-7xl mb-5 md:translate-x-[-254px] bg-primary-950 lg:p-6 pb-1 lg:w-[150%]">
+        <h3 className="text-accent-400 font-black text-4xl md:text-7xl mb-5 md:translate-x-[-254px] bg-gradient-to-r from-accent-600 via-accent-500 to-accent-600 lg:p-6 p-1 lg:w-[150%] rounded-tr-lg rounded-br-lg">
           Cabin {cabin.name}
         </h3>
-        <p className="text-lg text-primary-300 mb-10">
+        <p className="text-lg text-primary-200 mb-10">
           <TextExpender>{cabin.description}</TextExpender>
         </p>
         <ul className="flex flex-col gap-4 mb-7">
           <li className="flex items-center gap-3">
-            <span className="h-5 w-5 text-primary-600">
+            <span className="h-5 w-5 text-accent-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -42,12 +43,12 @@ export default function Cabin({ cabin }: cabinProps) {
                 />
               </svg>
             </span>
-            <span className="text-lg">
-              For up to ${cabin.maxCapacity} guests
+            <span className="text-lg text-primary-100">
+              For up to {cabin.maxCapacity} guests
             </span>
           </li>
           <li className="flex items-center gap-3">
-            <span className="h-5 w-5 text-primary-600">
+            <span className="h-5 w-5 text-accent-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -68,12 +69,12 @@ export default function Cabin({ cabin }: cabinProps) {
                 />
               </svg>
             </span>
-            <span className="text-lg">
+            <span className="text-lg text-primary-100">
               Located in the heart of the Dolomites (Italy)
             </span>
           </li>
           <li className="flex items-center gap-3">
-            <span className="h-5 w-5 text-primary-600">
+            <span className="h-5 w-5 text-accent-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -89,7 +90,9 @@ export default function Cabin({ cabin }: cabinProps) {
                 />
               </svg>
             </span>
-            <span className="text-lg">Privacy 100% guaranteed</span>
+            <span className="text-lg text-primary-100">
+              Privacy 100% guaranteed
+            </span>
           </li>
         </ul>
       </div>

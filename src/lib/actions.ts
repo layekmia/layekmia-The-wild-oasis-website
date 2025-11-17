@@ -7,6 +7,7 @@ import {
   getBookings,
   getGuestByEmail,
   updateBooking,
+  updateBookingStatus,
   updateGuestProfile,
 } from "./apiService";
 import { revalidatePath } from "next/cache";
@@ -76,6 +77,40 @@ export async function updateReservation(formData: FormData, bookingId: string) {
 
   revalidatePath("/account/reservations");
   redirect("/account/reservations");
+}
+
+export async function cancelBooking(bookingId: string) {
+  // 1. Ensure the user is authenticated
+  const session = await getSession();
+  if (!session) {
+    throw new Error("You must be logged in.");
+  }
+
+  const userId = session.user.id;
+
+  // Fetch ONLY bookings owned by this user
+  const { data: bookings } = await getBookings(userId);
+
+  if (!bookings || bookings.length === 0) {
+    throw new Error("No reservations found for this user.");
+  }
+
+  //Ensure the booking belongs to the user
+  const isOwner = bookings.some((booking) => booking._id === bookingId);
+
+  if (!isOwner) {
+    throw new Error(
+      "You are not allowed to delete someone else's reservation."
+    );
+  }
+
+  const status = "cancelled";
+
+  // Perform delete operation
+  await updateBookingStatus(bookingId, status);
+
+  //Revalidate UI
+  revalidatePath("/account/reservations");
 }
 
 export async function deleteBooking(bookingId: string) {

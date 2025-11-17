@@ -35,8 +35,22 @@ export default function DeleteReservation({
         <button className="group flex cursor-pointer items-center gap-2 uppercase text-xs font-bold text-primary-300 grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900">
           {!isPending ? (
             <>
-              <TrashIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-              <span className="mt-1">Delete</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+
+              <span className="mt-1">Cancel</span>
             </>
           ) : (
             <span className="mx-auto">
@@ -49,8 +63,8 @@ export default function DeleteReservation({
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription className="text-primary-300">
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            This action cannot be undone. This will permanently cancel your your
+            booking.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -61,7 +75,7 @@ export default function DeleteReservation({
             onClick={handleDelete}
             className="bg-primary-800 text-primary-200 cursor-pointer"
           >
-            Delete
+            Confirm
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

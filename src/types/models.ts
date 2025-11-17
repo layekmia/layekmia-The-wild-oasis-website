@@ -26,7 +26,7 @@ export interface IBooking {
   observations?: string;
   cabinId: Types.ObjectId;
   guestId: Types.ObjectId;
-  status: "confirmed" | "unconfirmed";
+  status: "confirmed" | "unconfirmed" | "completed" | 'cancelled';
   createdAt?: Date;
   updatedAt?: Date;
 }

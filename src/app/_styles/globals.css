@@ -33,11 +33,10 @@
 
 /* === Theme Colors === */
 @theme {
-  /* 🌞 Light mode defaults */
+  /* 🌞 Light Mode (Your Default Theme) */
   --color-background: #ffffff;
   --color-foreground: #171717;
 
-  /* 🌿 Primary palette */
   --color-primary-50: #e1e8ef;
   --color-primary-100: #d4dee7;
   --color-primary-200: #b7c7d7;
@@ -50,7 +49,6 @@
   --color-primary-900: #1b2631;
   --color-primary-950: #141c24;
 
-  /* ✨ Accent palette */
   --color-accent-50: #faf5f0;
   --color-accent-100: #f4ece1;
   --color-accent-200: #e8d6bf;
@@ -62,12 +60,40 @@
   --color-accent-800: #6c4d28;
   --color-accent-900: #4b351b;
   --color-accent-950: #382814;
+  --color-card: #161b22;
+  
 
-  /* 🧩 Fonts */
+
   --font-sans: "Inter", "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
+/* 🌚 Dark Mode (Premium Colors from me) */
+.dark {
+  --color-background: #0d1117;
+  --color-foreground: #e6edf3;
+
+ 
+  --color-card-light: #1c2128;
+
+  --color-primary-50: #e3f2fd;
+  --color-primary-100: #bbdefb;
+  --color-primary-200: #90caf9;
+  --color-primary-300: #64b5f6;
+  --color-primary-400: #42a5f5;
+  --color-primary-500: #2196f3;
+  --color-primary-600: #1e88e5;
+  --color-primary-700: #1976d2;
+  --color-primary-800: #1565c0;
+  --color-primary-900: #0d47a1;
+
+  --color-accent-50: #fff4e5;
+  --color-accent-100: #ffe8cc;
+  --color-accent-200: #ffd1a3;
+  --color-accent-300: #ffb266;
+  --color-accent-400: #ff9933;
+  --color-accent-500: #ff8000;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

@@ -18,7 +18,7 @@ export default function CabinCard({ cabin }: CabinCardProps) {
         />
       </div>
       <div className="grow">
-        <div className="px-7 pt-5 pb-4 bg-primary-950">
+        <div className="px-7 pt-5 pb-4 bg-gradient-to-br from-primary-900 via-primary-950 to-black border border-primary-700 shadow-xl">
           <h2 className="mb-3 text-accent-400 text-2xl font-semibold">
             Cabin {cabin.name}
           </h2>

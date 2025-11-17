@@ -1,18 +1,5 @@
-// import SideNavigation from "@/components/SideNavigation";
-
-// export default function Layout({ children }: { children: React.ReactNode }) {
-//   return (
-//     <div className="grid grid-cols-[16rem_1fr] gap-12 h-full">
-
-//         <SideNavigation />
-//       <div>{children}</div>
-//     </div>
-//   );
-// }
 
 import "@/app/_styles/globals.css";
-import Header from "@/components/Header";
-import Logo from "@/components/Logo";
 import MobileNavigation from "@/components/MobileNavigation";
 import Navigation from "@/components/Navigation";
 import SideNavigation from "@/components/SideNavigation";
@@ -43,7 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-primary-950 text-primary-100 ${josefin.className} min-h-screen grid grid-cols-1 md:grid-cols-[auto_1fr]`}
+        className={`bg-linear-to-br from-[#09090f] via-[#141427] to-[#1a1a3a]
+ text-primary-100 ${josefin.className} min-h-screen grid grid-cols-1 md:grid-cols-[auto_1fr]`}
       >
         <AuthProviders>
           <ReservationProvider>
@@ -57,7 +45,7 @@ export default function RootLayout({
                   <Navigation />
                 </div>
               </div>
-              <div className="p-[2em_1em_60px_1em] md:p-[min(30px,7%)]">
+              <div className="p-[2em_1em_60px_1em] md:p-[min(30px,7%)] mb-20">
                 {children}
               </div>
             </main>

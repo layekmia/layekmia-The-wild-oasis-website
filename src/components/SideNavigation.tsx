@@ -42,20 +42,32 @@ export default function SideNavigation() {
 
   return (
     <nav
-      className={`border-t-2 max-md:bg-primary-950 z-10 border-primary-800 md:border-r  md:border-primary-900 py-2 max-md:w-full md:h-screen fixed  bottom-0 h-[60px] md:sticky md:top-0 
+      className={`
+    fixed md:sticky bottom-0 md:top-0 z-20
+    h-[60px] md:h-screen 
+    border-t-2 md:border-r  py-2
+    border-primary-800 md:border-primary-900
+    bg-gradient-to-b from-primary-950 via-black to-primary-950
+    shadow-xl 
     transition-all duration-300 ease-in-out
-    ${isOpen ? "w-[60px] px-2" : "w-[250px] px-4"}`}
+    flex flex-col
+    ${isOpen ? "w-[70px] px-2" : "w-[260px] px-4"}
+  `}
     >
-      <div className="flex flex-col h-full justify-between overflow-hidden">
-        <ul className="overflow-hidden max-md:flex items-center justify-between ">
-          <li className="mb-10 max-md:hidden flex items-center justify-end">
-            <div className={`${isOpen && "hidden"} `}>
+      <div className="flex flex-col h-full justify-between">
+        <ul className="overflow-hidden max-md:flex items-center justify-between">
+          <li className="mb-10 max-md:hidden flex items-center justify-between px-3">
+            <div
+              className={`transition-all duration-300 ${
+                isOpen && "opacity-0 w-0 overflow-hidden"
+              }`}
+            >
               <LogoDashboard />
             </div>
 
             <button
               onClick={() => setIsOpen((cur) => !cur)}
-              className="p-2 cursor-pointer ml-auto hover:bg-primary-900 rounded transition-colors"
+              className="p-2 hover:bg-primary-900/60 cursor-pointer rounded-lg transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +75,9 @@ export default function SideNavigation() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className={`size-6 transition-transform duration-200 
-              ${isOpen ? "rotate-180" : "rotate-0"}`}
+                className={`size-6 transition-transform duration-300 
+              ${isOpen ? "rotate-180" : "rotate-0"}
+            `}
               >
                 <path
                   strokeLinecap="round"
@@ -74,27 +87,30 @@ export default function SideNavigation() {
               </svg>
             </button>
           </li>
+
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-4 p-3 rounded-md transition-colors
-                hover:bg-primary-900
-                ${active ? "text-accent-400" : "text-[#e6e6ef]"}`}
+                  className={`
+                flex items-center gap-4 px-4 py-3 rounded-md group
+                transition-all duration-200
+                ${
+                  active
+                    ? "text-accent-400 bg-primary-900/60"
+                    : "text-primary-200 hover:text-accent-300 hover:bg-primary-900/40"
+                }
+              `}
                 >
-                  <span
-                    className={`${
-                      active ? "text-accent-400" : "text-[#e6e6ef]"
-                    }`}
-                  >
-                    {link.icon}
-                  </span>
+                  <span className="text-xl">{link.icon}</span>
 
                   <span
-                    className={`max-md:hidden transition-all text-nowrap duration-300  
-                  ${isOpen ? "opacity-0 w-0" : "opacity-100"}`}
+                    className={`
+                  max-md:hidden text-nowrap transition-all duration-300
+                  ${isOpen ? "opacity-0 w-0 overflow-hidden" : "opacity-100"}
+                `}
                   >
                     {link.name}
                   </span>
@@ -102,12 +118,12 @@ export default function SideNavigation() {
               </li>
             );
           })}
-          <li className="list-none md:mb-4 md:hidden">
+
+          <li className="md:hidden list-none">
             <SignOutButton isOpen={isOpen} />
           </li>
         </ul>
-
-        <li className="list-none mb-4 max-md:hidden">
+        <li className="hidden md:block list-none mb-4 px-3">
           <SignOutButton isOpen={isOpen} />
         </li>
       </div>

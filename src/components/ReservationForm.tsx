@@ -38,23 +38,23 @@ export default function ReservationForm({ cabin }: Cabin) {
   const createBookingWithData = createReservation.bind(null, bookingData);
 
   return (
-    <div className="h-full bg-primary-900">
-      <div className="flex items-center gap-5 px-8 md:px-16 py-2 bg-primary-800">
-        <p>Logged in as</p>
+    <div className="h-full bg-gradient-to-br from-primary-900 via-primary-950 to-black ">
+      <div className="flex items-center gap-5 px-8 md:px-16 py-2 bg-gradient-to-br from-primary-900 via-primary-950 to-black">
+        <p className="text-primary-300">Logged in as</p>
         {session?.user && (
-          <>
-            <div className="flex gap-4 items-center">
-              <Image
-                src={session?.user?.image ?? ""}
-                alt={session?.user?.name || "user profile"}
-                width={32}
-                height={32}
-                className="rounded-full"
-                referrerPolicy="no-referrer"
-              />
-              <p>{session?.user?.name}</p>
-            </div>
-          </>
+          <div className="flex gap-4 items-center">
+            <Image
+              src={session?.user?.image ?? ""}
+              alt={session?.user?.name || "user profile"}
+              width={32}
+              height={32}
+              className="rounded-full border-2 border-accent-400"
+              referrerPolicy="no-referrer"
+            />
+            <p className="text-accent-400 font-semibold">
+              {session?.user?.name}
+            </p>
+          </div>
         )}
       </div>
 
@@ -63,10 +63,12 @@ export default function ReservationForm({ cabin }: Cabin) {
           resetRange();
           await createBookingWithData(formData);
         }}
-        className="flex flex-col gap-5 bg-primary-900 py-5 px-5 md:px-16 md:py-10 text-lg"
+        className="flex flex-col gap-5  py-5 px-5 md:px-16 md:py-10 text-lg"
       >
         <div className="space-y-2">
-          <label htmlFor="numGuests" className="text-base">How many Guests</label>
+          <label htmlFor="numGuests" className="text-base">
+            How many Guests
+          </label>
           <select
             name="numGuests"
             required
@@ -103,7 +105,7 @@ export default function ReservationForm({ cabin }: Cabin) {
         </div>
       </form>
       <div className="md:hidden">
-        <ReservationSummary cabin={cabin}/>
+        <ReservationSummary cabin={cabin} />
       </div>
     </div>
   );

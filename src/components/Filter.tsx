@@ -22,13 +22,17 @@ export default function Filter() {
 
   return (
     <div className="flex justify-end mb-8">
-      <div className="border border-primary-800 flex-col md:flex-row items-center">
+      <div className="border border-primary-800 flex flex-col md:flex-row rounded-lg overflow-hidden">
         {filters.map(({ label, value }) => (
           <button
             key={value}
             onClick={() => handleFilter(value)}
-            className={`px-5 py-2 transition-colors border-r border-r-primary-950 cursor-pointer
-              ${active === value ? "bg-primary-700" : "hover:bg-primary-700"}`}
+            className={`px-5 py-2 transition-colors cursor-pointer
+          ${
+            active === value
+              ? "bg-gradient-to-r from-accent-500 to-accent-700 text-white"
+              : "bg-primary-900 text-primary-200 hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-700 hover:text-white"
+          }`}
           >
             {label}
           </button>

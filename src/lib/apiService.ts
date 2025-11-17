@@ -183,6 +183,23 @@ export async function updateBooking(
   }
 }
 
+export async function updateBookingStatus(
+  id: string,
+  status: string
+): Promise<ApiResponse<any>> {
+  if (!id) return { data: null, error: "Booking Id is required" };
+
+  try {
+    const res = await axios.patch(
+      `${BASE_URL}/api/bookings/${id}/update/status`,
+      { status }
+    );
+    return { data: res.data || null, error: null };
+  } catch (error) {
+    return handleAxiosError(error);
+  }
+}
+
 // Delete booking
 export async function deleteBookingById(id: string): Promise<ApiResponse<any>> {
   if (!id) return { data: null, error: "Booking ID is required" };

@@ -11,6 +11,9 @@ export const metadata = {
 export default async function Page() {
   const session = await getSession();
   const { data } = await getBookings(session?.user?.id as string);
+  const validBookings = data?.filter(
+    (booking) => booking.status !== "cancelled"
+  );
 
   return (
     <div className="p-1">
@@ -18,7 +21,7 @@ export default async function Page() {
         Your reservations
       </h2>
       <Suspense fallback={<Spinner />}>
-        <ReservationsList bookings={data ?? []} />
+        <ReservationsList bookings={validBookings ?? []} />
       </Suspense>
     </div>
   );

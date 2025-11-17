@@ -30,15 +30,17 @@ export default async function Page({
 
       <form
         action={handleUpdateReservation}
-        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+        className="bg-gradient-to-br from-[#0f1115] via-[#13141c] to-[#1c1f2c] py-8 px-12 text-lg flex gap-6 flex-col rounded-2xl shadow-lg border border-primary-800"
       >
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
+          <label htmlFor="numGuests" className="text-gray-300 font-medium">
+            How many guests?
+          </label>
           <select
             name="numGuests"
             id="numGuests"
             defaultValue={numGuests}
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+            className="px-5 py-3 bg-primary-950 text-primary-100 w-full rounded-sm focus:outline-none focus:ring-2 focus:ring-accent-400 transition"
             required
           >
             <option value="" key="">
@@ -53,13 +55,13 @@ export default async function Page({
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="observations" className="text-gray-300 font-medium">
             Anything we should know about your stay?
           </label>
           <textarea
             name="observations"
             defaultValue={observations}
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+            className="px-5 py-3 bg-primary-950 text-primary-100 w-full rounded-sm focus:outline-none focus:ring-2 focus:ring-accent-400 transition"
           />
         </div>
 
