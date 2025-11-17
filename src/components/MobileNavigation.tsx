@@ -10,27 +10,22 @@ export default function MobileNavigation() {
   const { data: session } = useSession();
   const [isToggle, setIsToggle] = useState(false);
 
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Close menu when clicking outside
   useEffect(() => {
-    function handleClickOutside(e: Event) {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        menuRef.current &&
+        e.target instanceof Node &&
+        !menuRef.current.contains(e.target)
+      ) {
         setIsToggle(false);
       }
     }
 
-    if (isToggle) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isToggle]);
-
-  // Close on ESC press
-  useEffect(() => {
-    function handleEsc(e) {
-      if (e.key === "Escape") setIsToggle(true);
-    }
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return (
