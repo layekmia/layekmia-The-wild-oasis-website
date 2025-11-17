@@ -24,9 +24,9 @@ export default function MobileNavigation() {
       }
     }
 
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+    if (isToggle) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isToggle]);
 
   return (
     <header className="py-4 px-4 z-50  md:hidden md:px-6 lg:py-5 lg:px-8 border-b border-b-primary-700">
@@ -34,7 +34,7 @@ export default function MobileNavigation() {
         <Logo />
 
         {/* Hamburger */}
-        <button onClick={() => setIsToggle(false)}>
+        <button onClick={() => setIsToggle(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -56,7 +56,7 @@ export default function MobileNavigation() {
         )}
         <nav
           ref={menuRef}
-          className={`fixed top-0 z- left-0 bottom-0 w-[250px] bg-primary-950 h-screen py-5 px-4 z-30 transform transition-transform duration-300
+          className={`fixed top-0 z- left-0 bottom-0 w-[250px] bg-primary-900 h-screen py-5 px-4 z-30 transform transition-transform duration-300
             ${isToggle ? "translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex items-center justify-between mb-10">

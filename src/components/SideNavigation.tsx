@@ -42,7 +42,7 @@ export default function SideNavigation() {
 
   return (
     <nav
-      className={`border-t-2 border-primary-800 md:border-r  md:border-primary-900 py-2 max-md:w-full md:h-screen fixed  bottom-0 h-[60px] md:sticky md:top-0 
+      className={`border-t-2 max-md:bg-primary-950 z-10 border-primary-800 md:border-r  md:border-primary-900 py-2 max-md:w-full md:h-screen fixed  bottom-0 h-[60px] md:sticky md:top-0 
     transition-all duration-300 ease-in-out
     ${isOpen ? "w-[60px] px-2" : "w-[250px] px-4"}`}
     >
