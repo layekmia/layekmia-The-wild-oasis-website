@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏨 Hotel Management Dashboard
 
-## Getting Started
+A full-featured **Hotel Management System** built with **Next.js** and **TypeScript**, allowing users to browse cabins, make reservations, and manage their bookings through a dedicated dashboard. The project focuses on clean architecture, secure authentication, and a responsive user experience.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- **Cabin Browsing & Reservation**
+  - View all cabins with details
+  - Select date range and number of guests
+  - Make secure reservations
+
+- **User Dashboard**
+  - View all current and past reservations
+  - Update or delete bookings
+  - Access user profile page
+
+- **Profile Management**
+  - Update country
+  - Update national ID
+  - Persistent user data
+
+- **Secure Authentication**
+  - Implemented using **NextAuth**
+  - Authorization through separate **Node.js + Express backend**
+
+- **Modern Architecture**
+  - **Server Components** for efficient data fetching
+  - **Server Actions** for backend operations
+  - Public and Dashboard separated using **Route Groups**
+
+- **Error Handling**
+  - Global error boundaries
+  - Optimized 404 (Not Found) pages
+  - Clean validation and user-friendly error messages
+
+- **Responsive UI**
+  - Fully responsive on mobile, tablet, and desktop
+  - UI built with **Tailwind CSS** and **Heroicons**
+
+- **Global State Management**
+  - Managed using **Context API**
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Heroicons
+- Axios
+- Date-Fns
+
+### Backend
+- Node.js
+- Express
+- NextAuth Authentication
+
+### State Management
+- Context API
+
+---
+
+## 📂 Project Highlights
+
+- 🧩 Clean and modular folder structure  
+- ⚡ Fast performance using Server Components  
+- 🔐 Secure user authentication and authorization  
+- 🖥️ Optimized UI with responsive Tailwind design  
+- 🎯 Smooth UX with organized dashboard experience  
+
+---
+
+## 🚀 Installation & Setup
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/layekmia/The-wild-oasis-website.git
+cd your-project-folder
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+npm install
+NEXTAUTH_URL=<your-nextjs-url>
+GOOGLE_CLIENT_ID=<your-google-client-id>
+GOOGLE_CLIENT_SECRET=<Google-client-secret>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
