@@ -82,11 +82,11 @@ export default function SideNavigation() {
                   href={link.href}
                   className={`flex items-center gap-4 p-3 rounded-md transition-colors
                 hover:bg-primary-900
-                ${active ? "text-[#5e63ff]" : "text-[#e6e6ef]"}`}
+                ${active ? "text-accent-400" : "text-[#e6e6ef]"}`}
                 >
                   <span
                     className={`${
-                      active ? "text-[#5e63ff]" : "text-[#e6e6ef]"
+                      active ? "text-accent-400" : "text-[#e6e6ef]"
                     }`}
                   >
                     {link.icon}
