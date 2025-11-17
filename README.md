@@ -79,5 +79,11 @@ A full-featured **Hotel Management System** built with **Next.js** and **TypeScr
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/layekmia/The-wild-oasis-website.git
 cd your-project-folder
+
+npm install
+NEXTAUTH_URL=<your-nextjs-url>
+GOOGLE_CLIENT_ID=<your-google-client-id>
+GOOGLE_CLIENT_SECRET=<Google-client-secret>
+
