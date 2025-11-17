@@ -12,6 +12,9 @@
 
 import "@/app/_styles/globals.css";
 import Header from "@/components/Header";
+import Logo from "@/components/Logo";
+import MobileNavigation from "@/components/MobileNavigation";
+import Navigation from "@/components/Navigation";
 import SideNavigation from "@/components/SideNavigation";
 import { AuthProviders } from "@/context/authProvider";
 import { ReservationProvider } from "@/context/reservation";
@@ -40,16 +43,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-primary-950 text-primary-100 min-h-screen flex flex-col ${josefin.className} relative`}
+        className={`bg-primary-950 text-primary-100 ${josefin.className} min-h-screen grid grid-cols-1 md:grid-cols-[auto_1fr]`}
       >
         <AuthProviders>
           <ReservationProvider>
-            <div className="py-8 px-4 sm:py-12 sm:px-8 flex-1 grid">
-              <div className="grid grid-cols-[16rem_1fr] gap-12 h-full">
-                <SideNavigation />
-                <main className="max-w-7xl mx-auto w-full">{children}</main>
+            <SideNavigation />
+            <main className="">
+              <div className="w-full ">
+                <div className="md:hidden">
+                  <MobileNavigation />
+                </div>
+                <div className="max-md:hidden flex justify-end border-b border-primary-800 py-3 px-10">
+                  <Navigation />
+                </div>
               </div>
-            </div>
+              <div className="p-[2em_1em_60px_1em] md:p-[min(30px,7%)]">
+                {children}
+              </div>
+            </main>
           </ReservationProvider>
         </AuthProviders>
       </body>

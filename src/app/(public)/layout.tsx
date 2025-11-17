@@ -1,5 +1,6 @@
 import "@/app/_styles/globals.css";
 import Header from "@/components/Header";
+import MobileNavigation from "@/components/MobileNavigation";
 import { AuthProviders } from "@/context/authProvider";
 import { ReservationProvider } from "@/context/reservation";
 import { Josefin_Sans } from "next/font/google";
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <AuthProviders>
           <Header />
+          <MobileNavigation />
           <div className="py-8 px-4 sm:py-12 sm:px-8 flex-1 grid">
             <ReservationProvider>
               <main className="max-w-7xl mx-auto w-full">{children}</main>

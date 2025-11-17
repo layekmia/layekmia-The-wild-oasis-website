@@ -3,14 +3,20 @@
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/20/solid";
 import { signOut } from "next-auth/react";
 
-export default function SignOutButton() {
+export default function SignOutButton({ isOpen }: { isOpen: boolean }) {
   return (
     <button
       onClick={() => signOut({ callbackUrl: "/auth/signin" })}
-      className="py-3 px-5 cursor-pointer hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 w-full"
+      className="w-full cursor-pointer flex  items-center gap-4 p-3 rounded-md 
+      hover:bg-primary-900 transition-colors text-[#e6e6ef]"
     >
-      <ArrowRightOnRectangleIcon className="h-5 w-5 text-primary-600" />
-      <span>Sign out</span>
+      <ArrowRightOnRectangleIcon className="h-5 w-5 max-md:h-7 max-md:w-7 shrink-0" />
+      <span
+        className={`transition-all max-md:hidden duration-300 overflow-hidden 
+          ${isOpen ? "opacity-0 w-0" : "opacity-100 w-auto"}`}
+      >
+        Sign out
+      </span>
     </button>
   );
 }
