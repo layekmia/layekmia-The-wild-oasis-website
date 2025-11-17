@@ -13,7 +13,7 @@ export function formatBookingDates(startDate: Date, endDate: Date) {
   return `${startFormatted} (in ${days} days) — ${endFormatted}`;
 }
 
-export function formatDate(dateString: Date ): string {
+export function formatDate(dateString: Date): string {
   const date = new Date(dateString);
 
   return date.toLocaleDateString("en-GB", {
@@ -22,7 +22,6 @@ export function formatDate(dateString: Date ): string {
     year: "numeric",
   });
 }
-
 
 export function formatBookingTime(dateNumber: Date) {
   const date = new Date(dateNumber);
@@ -36,7 +35,7 @@ export async function getCountries() {
     );
     const countries = await res.json();
     return countries;
-  } catch(err:any) {
+  } catch (err: any) {
     throw new Error("Could not fetch countries", err.message);
   }
 }

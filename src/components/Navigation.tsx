@@ -46,7 +46,7 @@ export default async function Navigation() {
               className="hover:text-accent-400 transition-colors"
               href="/account"
             >
-              Guest area
+              Login
             </Link>
           )}
         </li>
