@@ -43,7 +43,7 @@ export default function SideNavigation() {
   return (
     <nav
       className={`
-    fixed md:sticky bottom-0 md:top-0 z-20
+    fixed md:sticky right-0 max-md:w-full bottom-0 left-0 md:top-0 z-20
     h-[60px] md:h-screen 
     border-t-2 md:border-r  py-2
     border-primary-800 md:border-primary-900
@@ -95,22 +95,24 @@ export default function SideNavigation() {
                 <Link
                   href={link.href}
                   className={`
-                flex items-center gap-4 px-4 py-3 rounded-md group
-                transition-all duration-200
-                ${
-                  active
-                    ? "text-accent-400 bg-primary-900/60"
-                    : "text-primary-200 hover:text-accent-300 hover:bg-primary-900/40"
-                }
-              `}
+                flex flex-col md:flex-row items-center max-md:justify-center gap-1 md:gap-4 
+                px-4 py-3 rounded-md group
+            transition-all duration-200
+          ${
+            active
+              ? "text-accent-400 bg-primary-900/60"
+              : "text-primary-200 hover:text-accent-300 hover:bg-primary-900/40"
+          }`}
                 >
-                  <span className="text-xl">{link.icon}</span>
-
+                  <span>{link.icon}</span>
+                  <span className="md:hidden block text-[10px] text-center leading-tight">
+                    {link.name}
+                  </span>
                   <span
                     className={`
-                  max-md:hidden text-nowrap transition-all duration-300
-                  ${isOpen ? "opacity-0 w-0 overflow-hidden" : "opacity-100"}
-                `}
+      max-md:hidden  text-nowrap transition-all duration-300
+      ${isOpen ? "opacity-0 w-0 overflow-hidden" : "opacity-100"}
+    `}
                   >
                     {link.name}
                   </span>
