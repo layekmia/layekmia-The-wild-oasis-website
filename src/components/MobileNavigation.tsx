@@ -124,7 +124,7 @@ export default function MobileNavigation() {
                   href="/account"
                   onClick={() => setIsToggle(false)}
                 >
-                  Guest area
+                  Login
                 </Link>
               )}
             </li>
